@@ -48,4 +48,10 @@ module.exports = (app, { User, Meme, Vote })=>{
     Vote.findByPk(1*req.params.id)
       .then(vote => res.json(vote));
   });
+
+  app.get('/vote', (req, res)=>{
+    Vote.findAll().then(votes => {
+      res.json(votes);
+    })
+  });
 }
