@@ -1,7 +1,12 @@
 module.exports = (app, { User, Meme, Vote })=>{
   app.post('/user', (req, res)=>{
     User.create(req.body)
-        .then(()=> res.json({ message: 'user created' }))
+        .then((response)=> {
+          res.json({
+            message: 'user created',
+            userId: response.dataValues.id,
+          })
+        })
         .catch(err => {
           res.status(500).json({ message: JSON.stringify(err) })
         });
@@ -23,6 +28,12 @@ module.exports = (app, { User, Meme, Vote })=>{
   app.get('/meme/:id', (req, res)=>{
     Meme.findByPk(1*req.params.id)
       .then(meme => res.json(meme));
+  });
+
+  app.get('/meme', (req, res)=>{
+    Meme.findAll().then(memes => {
+      res.json(memes);
+    })
   });
 
   app.post('/vote', (req, res)=>{

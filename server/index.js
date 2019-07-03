@@ -8,15 +8,15 @@ const connection = new ORM('postgres://meme_wars:guest@localhost:5432/meme_wars'
 const modelsFactory = require('./models');
 const { User, Meme, Vote } = modelsFactory(connection, ORM);
 
+app.use( express.static('build') );
+app.use( express.json() );
+
 const api = require('./api')(app, { User, Meme, Vote });
 
 connection.authenticate()
   .then(()=> console.log('success'))
   .catch((err)=> console.log(err));
 
-
-app.use( express.static('build') );
-app.use( express.json() );
 
 app.get('/hydrate', (req, res)=> {
   User.sync({ force: true })
