@@ -55,7 +55,7 @@ app.get('/hydrate', (req, res)=> {
           voter: users[i % users.length].id,
         });
       }
-      return Vote.bulkCreate(votes, { returning: true });
+      return Vote.bulkCreate(votes);
     })
     .then(()=> res.json({ message: 'success creating User, Meme, Vote tables' }))
     .catch(err => res.status(500).json({ message: JSON.stringify(err) }));

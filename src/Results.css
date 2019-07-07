@@ -1,0 +1,9 @@
+.Results .lists {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Results .lists ul {
+  list-style: none;
+  padding: 0;
+}
