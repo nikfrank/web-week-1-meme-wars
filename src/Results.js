@@ -1,5 +1,5 @@
 import React from 'react';
-import './Results.css';
+import './Results.scss';
 
 class Results extends React.Component {
   state = {
@@ -41,7 +41,7 @@ class Results extends React.Component {
                 .slice(0,3)
                 .map(meme=>(
                 <li key={meme.imgUrl}>
-                  <img src={meme.imgUrl} style={{ height: 100, width: 'auto'}}/>
+                  <img src={meme.imgUrl}/>
                 </li>
               ))}
             </ul>
@@ -53,7 +53,7 @@ class Results extends React.Component {
                 .slice(-3).reverse()
                 .map(meme=>(
                 <li key={meme.imgUrl}>
-                  <img src={meme.imgUrl} style={{ height: 100, width: 'auto'}}/>
+                  <img src={meme.imgUrl}/>
                 </li>
               ))}
             </ul>
