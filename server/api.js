@@ -1,6 +1,8 @@
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
+const auth = require('./auth');
+
 module.exports = (app, { User, Meme, Vote })=>{
 
   app.post('/login', (req, res)=>{
@@ -51,8 +53,11 @@ module.exports = (app, { User, Meme, Vote })=>{
       .then(user => res.json(user));
   });
 
-  app.post('/meme', (req, res)=>{
-    Meme.create(req.body)
+  app.post('/meme', auth, (req, res)=>{
+    Meme.create({
+      imgUrl: req.body.imgUrl,
+      author: req.session.userId,
+    })
         .then(()=> res.json({ message: 'meme created' }))
         .catch(err => {
           res.status(500).json({ message: JSON.stringify(err) })
@@ -70,8 +75,12 @@ module.exports = (app, { User, Meme, Vote })=>{
     })
   });
 
-  app.post('/vote', (req, res)=>{
-    Vote.create(req.body)
+  app.post('/vote', auth, (req, res)=>{
+    Vote.create({
+      winner: req.body.winner,
+      loser: req.body.loser,
+      voter: req.session.userId,
+    })
         .then(()=> res.json({ message: 'vote created' }))
         .catch(err => {
           res.status(500).json({ message: JSON.stringify(err) })
