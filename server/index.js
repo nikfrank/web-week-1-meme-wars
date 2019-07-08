@@ -2,8 +2,10 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 4000;
 
+const crypto = require('crypto');
+
 const ORM = require('sequelize');
-const connection = new ORM('postgres://memewars:guest@localhost:5432/memewars');
+const connection = new ORM('postgres://memewars:guest@localhost:5432/memewars', { logging: false });
 
 const modelsFactory = require('./models');
 const { User, Meme, Vote } = modelsFactory(connection, ORM);
@@ -19,8 +21,13 @@ connection.authenticate()
 
 
 app.get('/hydrate', (req, res)=> {
+  const passwordHash = crypto.pbkdf2Sync('guest', 'secret code', 100, 64, 'sha512')
+                             .toString('hex');
+
   let users = [
-    { name: 'nik' }, { name: 'avi' }, { name: 'dan' },
+    { name: 'nik', passwordHash },
+    { name: 'avi', passwordHash },
+    { name: 'dan', passwordHash },
   ];
 
   let memes = [
