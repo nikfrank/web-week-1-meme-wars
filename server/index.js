@@ -5,7 +5,9 @@ const port = process.env.PORT || 4000;
 const crypto = require('crypto');
 
 const ORM = require('sequelize');
-const connection = new ORM('postgres://memewars:guest@localhost:5432/memewars', { logging: false });
+
+const connectionString = process.env.DATABASE_URL || 'postgres://memewars:guest@localhost:5432/memewars';
+const connection = new ORM(connectionString, { logging: false });
 
 const modelsFactory = require('./models');
 const { User, Meme, Vote } = modelsFactory(connection, ORM);
