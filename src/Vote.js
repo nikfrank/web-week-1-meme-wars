@@ -49,11 +49,13 @@ class Vote extends React.Component {
   vote = (winner, loser)=> {
     fetch('/vote', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer '+localStorage.sessionToken,
+      },
       body: JSON.stringify({
         winner: winner,
         loser: loser,
-        voter: 1*localStorage.userId,
       }),
     }).then(response=> response.json())
       .then(responseJson=> {
