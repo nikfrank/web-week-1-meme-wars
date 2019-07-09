@@ -22,7 +22,9 @@ connection.authenticate()
   .catch((err)=> console.log(err));
 
 
-app.get('/hydrate', (req, res)=> {
+app.get('/hydrate', (req, res, next)=>{
+  res.status(404).end('GET /hydrate not found');
+}, (req, res)=> {
   const passwordHash = crypto.pbkdf2Sync('guest', 'secret code', 100, 64, 'sha512')
                              .toString('hex');
 
