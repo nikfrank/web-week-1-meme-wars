@@ -43,7 +43,7 @@ class Meme extends React.Component {
                    onChange={this.setImgUrl}/>
           </label>
           <button onClick={this.upload}>Upload</button>
-          <img src={this.state.imgUrl}/>
+          <img alt='' src={this.state.imgUrl}/>
         </div>
       </div>
     );
