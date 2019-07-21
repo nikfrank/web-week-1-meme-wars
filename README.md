@@ -6,6 +6,10 @@
 const someFunction = ()=> { 'whatever' }
 ```
 
+[click here](https://google.ca)
+
+[scroll to BLAH](#blah)
+
 <img src='https://imgur.com/removed.png' height=200 width=300 />
 
 | head1 | head2 | h3 |
@@ -28,6 +32,8 @@ const someFunction = ()=> { 'whatever' }
   - rawwwr
   - RAWWWR
 
+
+<a href="#blah">BLAH</a>
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
