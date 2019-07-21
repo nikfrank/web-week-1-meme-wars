@@ -6,7 +6,7 @@
 const someFunction = ()=> { 'whatever' }
 ```
 
-<img src='imgur.com/removed.png' height=200 width=300 />
+<img src='https://imgur.com/removed.png' height=200 width=300 />
 
 | head1 | head2 | h3 |
 |---|---|---|
@@ -21,6 +21,13 @@ const someFunction = ()=> { 'whatever' }
   - nested
     - more nesting
 - top level
+
+1. blah
+2. hmm
+3. rawr
+  - rawwwr
+  - RAWWWR
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
