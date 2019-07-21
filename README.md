@@ -33,7 +33,7 @@ const someFunction = ()=> { 'whatever' }
   - RAWWWR
 
 
-<a href="#blah">BLAH</a>
+<a name="blah">BLAH</a>
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
