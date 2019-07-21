@@ -1,6 +1,19 @@
 import React from 'react';
 import './Results.scss';
 
+export const sortMemesByWinning = (memes, votes)=>
+  memes.map((meme)=> {
+    const total = votes.filter(vote => (
+      meme.id === vote.winner || meme.id === vote.loser
+    )).length;
+
+    const winning = votes.filter(vote => (
+      vote.winner === meme.id
+    )).length;
+
+    return { percentage: winning / total, imgUrl: meme.imgUrl };
+  }).sort((ma, mb)=> ma.percentage < mb.percentage ? 1 : -1);
+
 class Results extends React.Component {
   state = {
     winners: [],
@@ -10,19 +23,9 @@ class Results extends React.Component {
     Promise.all([
       fetch('/meme').then(response=> response.json()),
       fetch('/vote').then(response=> response.json())
-    ]).then(([memes, votes]) => this.setState({
+    ]).then(([memes, votes]) => console.log(memes, votes)|| this.setState({
       votes, memes,
-      winners: memes.map((meme)=> {
-        const total = votes.filter(vote => (
-          meme.id === vote.winner || meme.id === vote.loser
-        )).length;
-
-        const winning = votes.filter(vote => (
-          vote.winner === meme.id
-        )).length;
-
-        return { percentage: winning / total, imgUrl: meme.imgUrl };
-      }).sort((ma, mb)=> ma.percentage < mb.percentage ? 1 : -1),
+      winners: sortMemesByWinning(memes, votes),
     }));
   }
 
@@ -36,7 +39,7 @@ class Results extends React.Component {
         <div className='lists'>
           <div>
             Winners:
-            <ul>
+            <ul className='winner'>
               {this.state.winners
                 .slice(0,3)
                 .map(meme=>(
