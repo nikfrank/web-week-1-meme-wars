@@ -9,10 +9,18 @@ const someFunction = ()=> { 'whatever' }
 <img src='imgur.com/removed.png' height=200 width=300 />
 
 | head1 | head2 | h3 |
-===
+|---|---|---|
 | div 1 | div 2 | div 3 |
 | div 1 | div 2 | div 3 |
 | div 1 | div 2 | div 3 |
+
+
+- list item 1
+- 2
+  - blah
+  - nested
+    - more nesting
+- top level
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
